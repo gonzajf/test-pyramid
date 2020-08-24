@@ -1,8 +1,8 @@
 package io.gonzajf.testpyramid.controller;
 
-import static org.hamcrest.core.Is.is;
-
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -43,5 +43,13 @@ public class ControllerTest {
     	assertThat(response, is("The city of Berlin is in Germany!"));
     }
     
+    @Test
+    public void should_return_is_unknown_city() {
+    	given(cityRepository.findByCityNameIgnoreCase(anyString()))
+    		.willReturn(Optional.empty());
+    	
+    	String response = cityController.getCity("Berlin");
+    	assertThat(response, is("Where in the world is 'Berlin'?"));
+    }
 	
 }

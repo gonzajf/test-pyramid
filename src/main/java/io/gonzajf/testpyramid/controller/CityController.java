@@ -28,7 +28,7 @@ public class CityController {
     	return foundedCity.map(city -> String.format("The city of %s is in %s!", 
     						city.getCityName(), 
     						city.getCountry()))
-    				.orElse(String.format("Where is '%s' that you're talking about?",
+    				.orElse(String.format("Where in the world is '%s'?",
                         cityName));
     }
 }
